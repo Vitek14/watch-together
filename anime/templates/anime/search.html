@@ -1,0 +1,33 @@
+{% extends 'anime/info.html' %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+<div class="container mt-4">
+  <form id="search-form" method="GET" class="mb-4">
+    {% bootstrap_form form %}
+    <button type="submit" class="btn btn-primary">Искать</button>
+  </form>
+
+  <div id="search-results">
+    {% include 'anime/results.html' %}
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const searchInput = document.querySelector('#id_query');
+  const resultsContainer = document.querySelector('#search-results');
+  
+  searchInput.addEventListener('input', function() {
+    const query = this.value;
+    
+    // AJAX-запрос
+    fetch(`?query=${encodeURIComponent(query)}`)
+      .then(response => response.text())
+      .then(html => {
+        resultsContainer.innerHTML = html;
+      });
+  });
+});
+</script>
+{% endblock %}

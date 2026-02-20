@@ -1,0 +1,11 @@
+{% if query %}
+  {% if results %}
+    <ul class="list-group list-group-flush">
+      {% for product in results %}
+        <a class="list-group-item" href="{% url 'info' product.id %}">{{ product.russian }}</a>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <div class="alert alert-info">Ничего не найдено</div>
+  {% endif %}
+{% endif %}

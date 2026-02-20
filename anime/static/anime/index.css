@@ -1,0 +1,9 @@
+.card {
+    transition: transform 0.3s ease; /* Плавное увеличение за 0.3 секунды */
+    pointer-events: bounding-box;
+}
+
+.card:hover {
+    transform: scale(1.03); /* Увеличиваем на 3% */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* тень для красоты */
+}
